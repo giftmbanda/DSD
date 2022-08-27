@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewNewslettersubscribeTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewNewslettersubscribeLabel_subscriptionid}"/>
+                    <h:outputText value="#{newslettersubscribeController.selected.subscriptionid}" title="#{bundle.ViewNewslettersubscribeTitle_subscriptionid}"/>
+                    <h:outputText value="#{bundle.ViewNewslettersubscribeLabel_issubscribe}"/>
+                    <h:outputText value="#{newslettersubscribeController.selected.issubscribe}" title="#{bundle.ViewNewslettersubscribeTitle_issubscribe}"/>
+                    <h:outputText value="#{bundle.ViewNewslettersubscribeLabel_newsletters}"/>
+                    <h:outputText value="#{newslettersubscribeController.selected.newsletters}" title="#{bundle.ViewNewslettersubscribeTitle_newsletters}"/>
+                    <h:outputText value="#{bundle.ViewNewslettersubscribeLabel_startdate}"/>
+                    <h:outputText value="#{newslettersubscribeController.selected.startdate}" title="#{bundle.ViewNewslettersubscribeTitle_startdate}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewNewslettersubscribeLabel_enddate}"/>
+                    <h:outputText value="#{newslettersubscribeController.selected.enddate}" title="#{bundle.ViewNewslettersubscribeTitle_enddate}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewNewslettersubscribeLabel_username}"/>
+                    <h:outputText value="#{newslettersubscribeController.selected.username}" title="#{bundle.ViewNewslettersubscribeTitle_username}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{newslettersubscribeController.destroyAndView}" value="#{bundle.ViewNewslettersubscribeDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewNewslettersubscribeEditLink}"/>
+                <br />
+                <h:commandLink action="#{newslettersubscribeController.prepareCreate}" value="#{bundle.ViewNewslettersubscribeCreateLink}" />
+                <br />
+                <h:commandLink action="#{newslettersubscribeController.prepareList}" value="#{bundle.ViewNewslettersubscribeShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewNewslettersubscribeIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditNewslettersubscribeTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditNewslettersubscribeLabel_subscriptionid}" for="subscriptionid" />
+                    <h:inputText id="subscriptionid" value="#{newslettersubscribeController.selected.subscriptionid}" title="#{bundle.EditNewslettersubscribeTitle_subscriptionid}" required="true" requiredMessage="#{bundle.EditNewslettersubscribeRequiredMessage_subscriptionid}"/>
+                    <h:outputLabel value="#{bundle.EditNewslettersubscribeLabel_issubscribe}" for="issubscribe" />
+                    <h:inputText id="issubscribe" value="#{newslettersubscribeController.selected.issubscribe}" title="#{bundle.EditNewslettersubscribeTitle_issubscribe}" />
+                    <h:outputLabel value="#{bundle.EditNewslettersubscribeLabel_newsletters}" for="newsletters" />
+                    <h:inputText id="newsletters" value="#{newslettersubscribeController.selected.newsletters}" title="#{bundle.EditNewslettersubscribeTitle_newsletters}" required="true" requiredMessage="#{bundle.EditNewslettersubscribeRequiredMessage_newsletters}"/>
+                    <h:outputLabel value="#{bundle.EditNewslettersubscribeLabel_startdate}" for="startdate" />
+                    <h:inputText id="startdate" value="#{newslettersubscribeController.selected.startdate}" title="#{bundle.EditNewslettersubscribeTitle_startdate}" required="true" requiredMessage="#{bundle.EditNewslettersubscribeRequiredMessage_startdate}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditNewslettersubscribeLabel_enddate}" for="enddate" />
+                    <h:inputText id="enddate" value="#{newslettersubscribeController.selected.enddate}" title="#{bundle.EditNewslettersubscribeTitle_enddate}" required="true" requiredMessage="#{bundle.EditNewslettersubscribeRequiredMessage_enddate}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditNewslettersubscribeLabel_username}" for="username" />
+                    <h:selectOneMenu id="username" value="#{newslettersubscribeController.selected.username}" title="#{bundle.EditNewslettersubscribeTitle_username}" required="true" requiredMessage="#{bundle.EditNewslettersubscribeRequiredMessage_username}">
+                        <f:selectItems value="#{usersController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{newslettersubscribeController.update}" value="#{bundle.EditNewslettersubscribeSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditNewslettersubscribeViewLink}"/>
+                <br />
+                <h:commandLink action="#{newslettersubscribeController.prepareList}" value="#{bundle.EditNewslettersubscribeShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditNewslettersubscribeIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

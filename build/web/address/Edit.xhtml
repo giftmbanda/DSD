@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditAddressTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditAddressLabel_addressid}" for="addressid" />
+                    <h:inputText id="addressid" value="#{addressController.selected.addressid}" title="#{bundle.EditAddressTitle_addressid}" required="true" requiredMessage="#{bundle.EditAddressRequiredMessage_addressid}"/>
+                    <h:outputLabel value="#{bundle.EditAddressLabel_residentialaddress}" for="residentialaddress" />
+                    <h:inputText id="residentialaddress" value="#{addressController.selected.residentialaddress}" title="#{bundle.EditAddressTitle_residentialaddress}" required="true" requiredMessage="#{bundle.EditAddressRequiredMessage_residentialaddress}"/>
+                    <h:outputLabel value="#{bundle.EditAddressLabel_residentialcode}" for="residentialcode" />
+                    <h:inputText id="residentialcode" value="#{addressController.selected.residentialcode}" title="#{bundle.EditAddressTitle_residentialcode}" required="true" requiredMessage="#{bundle.EditAddressRequiredMessage_residentialcode}"/>
+                    <h:outputLabel value="#{bundle.EditAddressLabel_postalcode}" for="postalcode" />
+                    <h:inputText id="postalcode" value="#{addressController.selected.postalcode}" title="#{bundle.EditAddressTitle_postalcode}" required="true" requiredMessage="#{bundle.EditAddressRequiredMessage_postalcode}"/>
+                    <h:outputLabel value="#{bundle.EditAddressLabel_postaladdress}" for="postaladdress" />
+                    <h:inputText id="postaladdress" value="#{addressController.selected.postaladdress}" title="#{bundle.EditAddressTitle_postaladdress}" required="true" requiredMessage="#{bundle.EditAddressRequiredMessage_postaladdress}"/>
+                    <h:outputLabel value="#{bundle.EditAddressLabel_issame}" for="issame" />
+                    <h:inputText id="issame" value="#{addressController.selected.issame}" title="#{bundle.EditAddressTitle_issame}" />
+                </h:panelGrid>
+                <h:commandLink action="#{addressController.update}" value="#{bundle.EditAddressSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditAddressViewLink}"/>
+                <br />
+                <h:commandLink action="#{addressController.prepareList}" value="#{bundle.EditAddressShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditAddressIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

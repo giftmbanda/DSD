@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListNewslettersubscribeTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListNewslettersubscribeEmpty}" rendered="#{newslettersubscribeController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{newslettersubscribeController.items.rowCount > 0}">
+                    <h:outputText value="#{newslettersubscribeController.pagination.pageFirstItem + 1}..#{newslettersubscribeController.pagination.pageLastItem + 1}/#{newslettersubscribeController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{newslettersubscribeController.previous}" value="#{bundle.Previous} #{newslettersubscribeController.pagination.pageSize}" rendered="#{newslettersubscribeController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{newslettersubscribeController.next}" value="#{bundle.Next} #{newslettersubscribeController.pagination.pageSize}" rendered="#{newslettersubscribeController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{newslettersubscribeController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNewslettersubscribeTitle_subscriptionid}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.subscriptionid}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNewslettersubscribeTitle_issubscribe}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.issubscribe}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNewslettersubscribeTitle_newsletters}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.newsletters}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNewslettersubscribeTitle_startdate}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.startdate}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNewslettersubscribeTitle_enddate}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.enddate}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNewslettersubscribeTitle_username}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.username}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{newslettersubscribeController.prepareView}" value="#{bundle.ListNewslettersubscribeViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{newslettersubscribeController.prepareEdit}" value="#{bundle.ListNewslettersubscribeEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{newslettersubscribeController.destroy}" value="#{bundle.ListNewslettersubscribeDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{newslettersubscribeController.prepareCreate}" value="#{bundle.ListNewslettersubscribeCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListNewslettersubscribeIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
